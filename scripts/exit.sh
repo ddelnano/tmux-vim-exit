@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 terminate_vim_in_current_session() {
     tmux list-panes -F "#{pane_id} #{pane_current_command}" | grep 'vim' | awk '/[0-9]+/{ print $1 }' | while read paneId; do
@@ -14,4 +14,4 @@ terminate_vim_in_sessions() {
     terminate_vim_in_current_session
 }
 
-$@
+terminate_vim_in_sessions
