@@ -9,9 +9,11 @@ terminate_vim_in_current_session() {
 }
 
 terminate_vim_in_sessions() {
-    # TODO: Add looping through sessions.
     # TODO: Add looping through all windows of each session.
-    terminate_vim_in_current_session
+    tmux list-sessions -F "#{session_id}" | while read sessionId; do
+        tmux switch-client -n
+        terminate_vim_in_current_session
+    done
 }
 
 terminate_vim_in_sessions
